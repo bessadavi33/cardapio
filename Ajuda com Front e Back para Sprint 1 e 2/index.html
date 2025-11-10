@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sistema de Cardápio Escolar</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="loginScreen" class="screen active">
+        <div class="login-container">
+            <h1>🍽️ Cardápio Escolar</h1>
+            <form id="loginForm">
+                <div class="form-group">
+                    <label for="email">Email:</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+                <div class="form-group">
+                    <label for="senha">Senha:</label>
+                    <input type="password" id="senha" name="senha" required>
+                </div>
+                <button type="submit" class="btn btn-primary">Entrar</button>
+                <p class="login-hint">
+                    <strong>Credenciais de teste:</strong><br>
+                    Admin: admin@escola.com / admin123<br>
+                    Aluno: joao@escola.com / senha123
+                </p>
+            </form>
+        </div>
+    </div>
+
+    <div id="alunoScreen" class="screen">
+        <header class="navbar">
+            <div class="navbar-content">
+                <h2>🍽️ Cardápio Escolar</h2>
+                <div class="user-info">
+                    <span id="nomeUsuario"></span>
+                    <button id="logoutBtn" class="btn btn-secondary">Sair</button>
+                </div>
+            </div>
+        </header>
+
+        <main class="container">
+            <section class="cardapio-section">
+                <h2>Cardápio da Semana</h2>
+                <div id="cardapioList" class="cardapio-list">
+                    </div>
+            </section>
+
+            <div id="refeicaoModal" class="modal">
+                <div class="modal-content">
+                    <span class="close">&times;</span>
+                    <h3 id="modalTitulo"></h3>
+                    <div id="modalDetalhes"></div>
+                    
+                    <div class="avaliacao-section">
+                        <h4>Avaliar Refeição</h4>
+                        <div class="rating">
+                            <input type="radio" name="nota" value="5" id="nota5">
+                            <label for="nota5">⭐⭐⭐⭐⭐</label>
+                            <input type="radio" name="nota" value="4" id="nota4">
+                            <label for="nota4">⭐⭐⭐⭐</label>
+                            <input type="radio" name="nota" value="3" id="nota3">
+                            <label for="nota3">⭐⭐⭐</label>
+                            <input type="radio" name="nota" value="2" id="nota2">
+                            <label for="nota2">⭐⭐</label>
+                            <input type="radio" name="nota" value="1" id="nota1">
+                            <label for="nota1">⭐</label>
+                        </div>
+                        <button type="button" id="enviarAvaliacaoBtn" class="btn btn-primary">Enviar Avaliação</button>
+                    </div>
+
+                    <div class="comentario-section">
+                        <h4>Comentários</h4>
+                        <textarea id="comentarioTexto" placeholder="Deixe seu comentário..."></textarea>
+                        <button type="button" id="enviarComentarioBtn" class="btn btn-primary">Enviar Comentário</button>
+                        <div id="comentariosList" class="comentarios-list">
+                            </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <div id="adminScreen" class="screen">
+        <header class="navbar">
+            <div class="navbar-content">
+                <h2>🍽️ Cardápio Escolar - Admin</h2>
+                <div class="user-info">
+                    <span id="nomeUsuarioAdmin"></span>
+                    <button id="logoutBtnAdmin" class="btn btn-secondary">Sair</button>
+                </div>
+            </div>
+        </header>
+
+        <main class="container">
+            <div class="admin-tabs">
+                <button class="tab-btn active" data-tab="cardapio-tab">Gerenciar Cardápio</button>
+                <button class="tab-btn" data-tab="relatorio-tab">Relatório de Avaliações</button>
+            </div>
+
+            <section id="cardapio-tab" class="tab-content active">
+                <h2>Gerenciar Cardápio da Semana</h2>
+                
+                <div class="form-section">
+                    <h3>Adicionar/Editar Refeição</h3>
+                    <form id="cardapioForm">
+                        <div class="form-group">
+                            <label for="diaSemana">Dia da Semana:</label>
+                            <select id="diaSemana" name="dia_semana" required>
+                                <option value="">Selecione...</option>
+                                <option value="Segunda">Segunda</option>
+                                <option value="Terça">Terça</option>
+                                <option value="Quarta">Quarta</option>
+                                <option value="Quinta">Quinta</option>
+                                <option value="Sexta">Sexta</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="dataRefeicao">Data:</label>
+                            <input type="date" id="dataRefeicao" name="data" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="prato">Prato:</label>
+                            <input type="text" id="prato" name="prato" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="descricao">Descrição:</label>
+                            <textarea id="descricao" name="descricao"></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Salvar Refeição</button>
+                        <button type="button" id="cancelarEdicaoBtn" class="btn btn-secondary" style="display:none;">Cancelar</button>
+                    </form>
+                </div>
+
+                <div class="cardapio-list-admin">
+                    <h3>Cardápio Atual</h3>
+                    <div id="cardapioListAdmin">
+                        </div>
+                </div>
+            </section>
+
+            <section id="relatorio-tab" class="tab-content">
+                <h2>Relatório de Avaliações</h2>
+                <div id="relatorioList" class="relatorio-list">
+                    </div>
+            </section>
+        </main>
+    </div>
+
+    <script src="script.js?v=2"></script>
+</body>
+</html>
