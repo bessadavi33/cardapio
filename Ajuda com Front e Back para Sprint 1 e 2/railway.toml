@@ -1,5 +1,8 @@
 [build]
-builder = "Nixpacks"
+builder = "nixpacks"
 
 [deploy]
 startCommand = "bash start.sh"
+
+[env]
+PORT = "5001"
