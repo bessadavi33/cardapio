@@ -1,3 +1,8 @@
 #!/bin/bash
-echo "Starting Flask app with Gunicorn..."
-gunicorn app:app --bind 0.0.0.0:$PORT
+# start.sh
+
+# Instalar dependências
+pip install -r requirements.txt
+
+# Executar a aplicação
+python app.py
