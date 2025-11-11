@@ -9,7 +9,7 @@ from models import (
     get_comentarios_por_cardapio, get_media_avaliacoes
 )
 
-app = Flask(__name__, static_folder='.', static_url_path='')
+app = Flask(__name__, static_folder='static', static_url_path='')
 CORS(app)
 
 # Inicializar banco de dados na primeira execução
@@ -242,8 +242,7 @@ def relatorio_semana():
 
 @app.route('/')
 def index():
-    """Servir a página principal"""
-    return send_from_directory('.', 'index.html')
+    return send_from_directory('static', 'index.html')
 
 @app.route('/<path:filename>')
 def serve_static(filename):
